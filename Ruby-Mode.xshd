@@ -1,0 +1,107 @@
+<?xml version = "1.0"?>
+<!-- Ruby style by Michael Leung -->
+
+<SyntaxDefinition name = "Ruby" extensions = ".rb;.cgi;.fcgi;.rxml; .rjs">
+
+	<Environment> 
+		<Default      color = "SystemColors.WindowText"    bgcolor = 
+"SystemColors.Window"/>
+		<Selection    color = "SystemColors.HighlightText" bgcolor = "SystemColors.Highlight"/>
+<!--		<Selection    bgcolor = "LightBlue"/> -->
+		<VRuler       color = "SystemColors.ControlLight"/>
+		<InvalidLines color = "Red"/>
+		<CaretMarker  color = "Yellow"/>
+		
+		<LineNumbers  color = "SystemColors.ControlDark" bgcolor = "SystemColors.Window"/>
+		
+		<FoldLine     color = "#808080" bgcolor="Black"/>
+		<FoldMarker   color = "#808080" bgcolor="White"/>
+		<SelectedFoldLine color = "Black" bgcolor="Black"/>
+
+		<EOLMarkers   color = "#E0E0E5"/>
+		<SpaceMarkers color = "#E0E0E5"/>
+		<TabMarkers   color = "#E0E0E5"/>
+	</Environment>
+
+  <Properties>
+    <Property name="LineComment" value="#"/>
+  </Properties>
+
+	<Digits name = "Digits" bold = "false" italic = "false" color = "DarkBlue"/>
+
+	<RuleSets>
+		<RuleSet ignorecase="false">
+			<!--Delimiters>&amp;&lt;&gt;~!@%^*()-+=|#{}[];"' ,	.?</Delimiters-->
+      <Delimiters>&amp;~!@%^*()-+=|\#/{}[]:;"'&lt;&gt; , .?</Delimiters>
+
+      <Span name = "Comment" bold = "false" italic = "false" color = "Green" stopateol = "true">
+        <Begin>#</Begin>
+      </Span>
+
+      <Span name="SYMBOL" bold="false" italic="false" color="Black" stopateol="true">
+        <Begin>::</Begin>
+        <End></End>
+      </Span>
+
+      <Span name ="DoubleQuotedString" bold ="false" italic ="false" color ="Maroon" stopateol ="false">
+        <Begin>"</Begin>
+        <End>"</End>
+      </Span>
+
+      <Span name ="SingleQuotedString" bold ="false" italic ="false" color ="Maroon" stopateol ="false">
+        <Begin>'</Begin>
+        <End>'</End>
+      </Span>
+
+      <MarkFollowing name="MarkFollowing"  bold = "true" italic = "false" color = "DarkSlateGray">:</MarkFollowing>
+      <KeyWords name = "Symbol" bold = "false" italic = "false" color = "DarkSlateGray">
+        <Key word = ":" />
+      </KeyWords>
+
+      <KeyWords name = "Keywords" bold="true" italic="false" color="Blue">
+				<Key word = "__FILE__" />
+				<Key word = "__LINE__" />
+				<Key word = "BEGIN" />
+				<Key word = "END" />
+				<Key word = "alias" />
+				<Key word = "and" />
+				<Key word = "begin" />
+				<Key word = "break" />
+				<Key word = "case" />
+				<Key word = "class" />
+				<Key word = "def" />
+				<Key word = "defined?" />
+				<Key word = "do" />
+				<Key word = "else" />
+				<Key word = "elsif" />
+				<Key word = "end" />
+				<Key word = "ensure" />
+				<Key word = "false" />
+				<Key word = "for" />
+				<Key word = "if" />
+				<Key word = "in" />
+				<Key word = "module" />
+				<Key word = "next" />
+				<Key word = "nil" />
+				<Key word = "not" />
+				<Key word = "or" />
+				<Key word = "redo" />
+				<Key word = "rescue" />
+	        		<Key word = "retry" />
+			    	<Key word = "return" />
+	        	        <Key word = "self" />
+			        <Key word = "super" />
+			        <Key word = "then" />
+			        <Key word = "true" />
+			        <Key word = "undef" />
+			        <Key word = "unless" />
+			        <Key word = "until" />
+			        <Key word = "when" />
+			        <Key word = "while" />
+			        <Key word = "yield" />
+      </KeyWords>
+    </RuleSet>
+
+  </RuleSets>
+</SyntaxDefinition>
+

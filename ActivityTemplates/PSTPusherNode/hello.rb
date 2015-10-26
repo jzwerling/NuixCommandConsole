@@ -1,0 +1,1 @@
+﻿puts "hello fools, running Nuix version #{$version} here."

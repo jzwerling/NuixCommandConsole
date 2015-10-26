@@ -1,0 +1,340 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C3F101F5-B0D5-4B5B-A4CA-B1C24A066377}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Nuix</RootNamespace>
+    <AssemblyName>NuixCommandConsole</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Nuix.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>nuix.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DigitalRune.Windows.TextEditor">
+      <HintPath>Resources\DigitalRune.Windows.TextEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Messaging" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActivityArguments.cs" />
+    <Compile Include="ActivityTemplates\CustomScriptActivityNode\CustomScriptActivityNode.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ActivityTemplates\CustomScriptActivityNode\CustomScriptActivityNode.Designer.cs">
+      <DependentUpon>CustomScriptActivityNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ActivityTemplates\GeneralUtilitiesNode\GeneralUtilitiesNode.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ActivityTemplates\GeneralUtilitiesNode\GeneralUtilitiesNode.Designer.cs">
+      <DependentUpon>GeneralUtilitiesNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ActivityTemplates\InformationGovernanceActivitiesNode\InformationGovernanceActivitiesNode.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ActivityTemplates\InformationGovernanceActivitiesNode\InformationGovernanceActivitiesNode.Designer.cs">
+      <DependentUpon>InformationGovernanceActivitiesNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ActivityTemplates\IntelligentMigrationActivitiesNode\IntelligentMigrationActivitiesNode.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ActivityTemplates\IntelligentMigrationActivitiesNode\IntelligentMigrationActivitiesNode.Designer.cs">
+      <DependentUpon>IntelligentMigrationActivitiesNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ActivityTemplates\PhysicalFileDeletionNode\PhysicalFileDeletionNode.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ActivityTemplates\PhysicalFileDeletionNode\PhysicalFileDeletionNode.Designer.cs">
+      <DependentUpon>PhysicalFileDeletionNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ActivityTemplates\PSTPusherNode\PSTPusherNode.cs">
+      <SubType>UserControl</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="ActivityTemplates\PSTPusherNode\PSTPusherNode.Designer.cs">
+      <DependentUpon>PSTPusherNode.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="ActivityTemplates\SearchNode\SearchNode.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ActivityTemplates\SearchNode\SearchNode.Designer.cs">
+      <DependentUpon>SearchNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Client.cs" />
+    <Compile Include="nccDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>nccDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="NuixCommandConsole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NuixCommandConsole.Designer.cs">
+      <DependentUpon>NuixCommandConsole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Request\Authentication.cs" />
+    <Compile Include="Request\CustomMetadata.cs" />
+    <Compile Include="Request\Export.cs" />
+    <Compile Include="Request\ExportOptions.cs" />
+    <Compile Include="Request\ImagingOptions.cs" />
+    <Compile Include="Request\Ingest.cs" />
+    <Compile Include="Request\IngestionTarget.cs" />
+    <Compile Include="Request\LoadFileOptions.cs" />
+    <Compile Include="Request\NewCase.cs" />
+    <Compile Include="Request\NumberingOptions.cs" />
+    <Compile Include="Request\ParallelProcessingSettings.cs" />
+    <Compile Include="Request\ProcessorSettings.cs" />
+    <Compile Include="Request\ProductOptions.cs" />
+    <Compile Include="Request\Properties.cs" />
+    <Compile Include="Request\StampingOptions.cs" />
+    <Compile Include="Request\TraversalOptions.cs" />
+    <Compile Include="Response\Authentication.cs" />
+    <Compile Include="Response\Export.cs" />
+    <Compile Include="Response\Ingest.cs" />
+    <Compile Include="Response\NewCase.cs" />
+    <Compile Include="Response\Progress.cs" />
+    <Compile Include="Response\Properties.cs" />
+    <EmbeddedResource Include="ActivityTemplates\CustomScriptActivityNode\CustomScriptActivityNode.resx">
+      <DependentUpon>CustomScriptActivityNode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ActivityTemplates\GeneralUtilitiesNode\GeneralUtilitiesNode.resx">
+      <DependentUpon>GeneralUtilitiesNode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ActivityTemplates\InformationGovernanceActivitiesNode\InformationGovernanceActivitiesNode.resx">
+      <DependentUpon>InformationGovernanceActivitiesNode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ActivityTemplates\IntelligentMigrationActivitiesNode\IntelligentMigrationActivitiesNode.resx">
+      <DependentUpon>IntelligentMigrationActivitiesNode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ActivityTemplates\PhysicalFileDeletionNode\PhysicalFileDeletionNode.resx">
+      <DependentUpon>PhysicalFileDeletionNode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ActivityTemplates\PSTPusherNode\PSTPusherNode.resx">
+      <DependentUpon>PSTPusherNode.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ActivityTemplates\SearchNode\SearchNode.resx">
+      <DependentUpon>SearchNode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NuixCommandConsole.resx">
+      <DependentUpon>NuixCommandConsole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="ActivityTemplates\PSTPusherNode\ews_mapping.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ActivityTemplates\PSTPusherNode\hello.rb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ActivityTemplates\PSTPusherNode\Process PSTs to EWS_config.bat.template">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ActivityTemplates\PSTPusherNode\Process PSTs.rb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ActivityTemplates\PSTPusherNode\ProcessorSettings.rb_">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ActivityTemplates\PSTPusherNode\PSTProcessor.rb_">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ActivityTemplates\PSTPusherNode\PSTProcessor_orig.rb_">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ActivityTemplates\PSTPusherNode\PSTSearch.rb_">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ActivityTemplates\PSTPusherNode\source data\output_5.pst">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ActivityTemplates\PSTPusherNode\source data\PSTs\Michael Lappin.pst">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ActivityTemplates\PSTPusherNode\source data\PSTs\Michael Lappin_1.pst">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ActivityTemplates\PSTPusherNode\source data\recipient.pst">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ActivityTemplates\PSTPusherNode\SwingDialogs.rb_">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ActivityTemplates\PSTPusherNode\System_Properties.rb_.template">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="bin\Debug\ActivityTemplates\PhysicalFileDeletionNode\PhysicalFileDeletionNode.bat" />
+    <None Include="bin\Debug\ActivityTemplates\PhysicalFileDeletionNode\PhysicalFileDeletionNode.save" />
+    <None Include="bin\Debug\ActivityTemplates\PSTPusherNode\hello.rb" />
+    <None Include="bin\Debug\log4j.properties" />
+    <None Include="nccDataSet.xsc">
+      <DependentUpon>nccDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="nccDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>nccDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="nccDataSet.xss">
+      <DependentUpon>nccDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Resources\Mode.xsd">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Ruby-Mode.xshd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ActivityTemplates\PhysicalFileDeletionNode\DefensibleForensicDeletionTemplate.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ActivityTemplates\PSTPusherNode\NxUI.jar">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ActivityTemplates\PSTPusherNode\ProgressDialog.jar">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bin\Debug\ActivityTemplates\PhysicalFileDeletionNode\DefensibleForensicDeletionTemplate.xml" />
+    <Content Include="ncc.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ncc_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>ncc.mdf</DependentUpon>
+    </Content>
+    <Content Include="nuix.ico" />
+    <Content Include="nuix.png" />
+    <EmbeddedResource Include="Resources\DigitalRune.Windows.TextEditor.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\DigitalRune.Windows.TextEditor.pdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\DigitalRune.Windows.TextEditor.XML">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\RightArrow.cur">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\SyntaxModes.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\TextEditorControl.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

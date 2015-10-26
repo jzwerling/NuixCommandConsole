@@ -1,0 +1,73 @@
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixActivityManager\bin\Debug\Resources\Mode.xsd
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixActivityManager\bin\Debug\Resources\Ruby-Mode.xshd
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixActivityManager\bin\Debug\Resources\DigitalRune.Windows.TextEditor.dll
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixActivityManager\bin\Debug\Resources\DigitalRune.Windows.TextEditor.pdb
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixActivityManager\bin\Debug\Resources\DigitalRune.Windows.TextEditor.XML
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixActivityManager\bin\Debug\Resources\SyntaxModes.xml
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixActivityManager\bin\Debug\Resources\RightArrow.cur
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixActivityManager\bin\Debug\Resources\TextEditorControl.bmp
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixActivityManager\bin\Debug\NuixActivityManager.exe.config
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixActivityManager\bin\Debug\NuixActivityManager.exe
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixActivityManager\bin\Debug\NuixActivityManager.pdb
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixActivityManager\bin\Debug\DigitalRune.Windows.TextEditor.dll
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixActivityManager\bin\Debug\DigitalRune.Windows.TextEditor.pdb
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixActivityManager\bin\Debug\DigitalRune.Windows.TextEditor.xml
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixActivityManager\obj\Debug\NuixCommandConsole.csprojResolveAssemblyReference.cache
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixActivityManager\obj\Debug\Nuix.ActivityTemplates.ActivityTemplatesNode.resources
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixActivityManager\obj\Debug\Nuix.ActivityTemplates.CustomScriptActivityNode.resources
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixActivityManager\obj\Debug\Nuix.NuixCommandConsole.resources
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixActivityManager\obj\Debug\Nuix.Properties.Resources.resources
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixActivityManager\obj\Debug\NuixCommandConsole.csproj.GenerateResource.Cache
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixActivityManager\obj\Debug\NuixActivityManager.exe
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixActivityManager\obj\Debug\NuixActivityManager.pdb
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\obj\Debug\Nuix.ActivityTemplates.CustomScriptActivityNode.CustomScriptActivityNode.resources
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\obj\Debug\Nuix.ActivityTemplates.GeneralUtilitiesNode.GeneralUtilitiesNode.resources
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\obj\Debug\Nuix.ActivityTemplates.InformationGovernanceActivitiesNode.InformationGovernanceActivitiesNode.resources
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\obj\Debug\Nuix.ActivityTemplates.IntelligentMigrationActivitiesNode.IntelligentMigrationActivitiesNode.resources
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\obj\Debug\Nuix.ActivityTemplates.PSTPusherNode.PSTPusherNode.resources
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\obj\Debug\Nuix.ActivityTemplates.SearchNode.SearchNode.resources
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\obj\Debug\Nuix.NuixCommandConsole.resources
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\obj\Debug\Nuix.Properties.Resources.resources
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\obj\Debug\NuixCommandConsole.csproj.GenerateResource.Cache
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\bin\Debug\ActivityTemplates\PSTPusherNode\NxUI.jar
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\bin\Debug\ActivityTemplates\PSTPusherNode\ProgressDialog.jar
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\bin\Debug\ncc.mdf
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\bin\Debug\ncc_log.ldf
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\bin\Debug\Resources\Mode.xsd
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\bin\Debug\Resources\Ruby-Mode.xshd
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\bin\Debug\Resources\DigitalRune.Windows.TextEditor.dll
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\bin\Debug\Resources\DigitalRune.Windows.TextEditor.pdb
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\bin\Debug\Resources\DigitalRune.Windows.TextEditor.XML
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\bin\Debug\Resources\SyntaxModes.xml
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\bin\Debug\Resources\RightArrow.cur
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\bin\Debug\Resources\TextEditorControl.bmp
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\bin\Debug\ActivityTemplates\PSTPusherNode\PSTPusherNode.resx
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\bin\Debug\ActivityTemplates\PSTPusherNode\PSTPusherNode.cs
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\bin\Debug\ActivityTemplates\PSTPusherNode\PSTPusherNode.Designer.cs
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\bin\Debug\ActivityTemplates\PSTPusherNode\ews_mapping.csv
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\bin\Debug\ActivityTemplates\PSTPusherNode\hello.rb
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\bin\Debug\ActivityTemplates\PSTPusherNode\Process PSTs to EWS_config.bat.template
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\bin\Debug\ActivityTemplates\PSTPusherNode\Process PSTs.rb
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\bin\Debug\ActivityTemplates\PSTPusherNode\ProcessorSettings.rb_
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\bin\Debug\ActivityTemplates\PSTPusherNode\PSTProcessor.rb_
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\bin\Debug\ActivityTemplates\PSTPusherNode\PSTProcessor_orig.rb_
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\bin\Debug\ActivityTemplates\PSTPusherNode\PSTSearch.rb_
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\bin\Debug\ActivityTemplates\PSTPusherNode\source data\output_5.pst
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\bin\Debug\ActivityTemplates\PSTPusherNode\source data\PSTs\Michael Lappin.pst
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\bin\Debug\ActivityTemplates\PSTPusherNode\source data\PSTs\Michael Lappin_1.pst
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\bin\Debug\ActivityTemplates\PSTPusherNode\source data\recipient.pst
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\bin\Debug\ActivityTemplates\PSTPusherNode\SwingDialogs.rb_
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\bin\Debug\ActivityTemplates\PSTPusherNode\System_Properties.rb_.template
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\bin\Debug\NuixCommandConsole.exe.config
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\bin\Debug\NuixCommandConsole.exe
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\bin\Debug\NuixCommandConsole.pdb
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\bin\Debug\DigitalRune.Windows.TextEditor.dll
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\bin\Debug\Newtonsoft.Json.dll
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\bin\Debug\DigitalRune.Windows.TextEditor.pdb
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\bin\Debug\DigitalRune.Windows.TextEditor.xml
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\bin\Debug\Newtonsoft.Json.xml
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\obj\Debug\NuixCommandConsole.exe
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\obj\Debug\NuixCommandConsole.pdb
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\obj\Debug\Nuix.ActivityTemplates.PhysicalFileDeletionNode.PhysicalFileDeletionNode.resources
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\obj\Debug\NuixCommandConsole.csprojResolveAssemblyReference.cache
+C:\development\projects\github\nuix-nase\c#.net\daniel.berry\NuixCommandConsole\bin\Debug\ActivityTemplates\PhysicalFileDeletionNode\DefensibleForensicDeletionTemplate.xml

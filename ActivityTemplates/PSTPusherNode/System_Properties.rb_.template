@@ -1,0 +1,37 @@
+# Configuration settings and variables here
+
+
+# The following should be adjusted by the user prior to executing the O365 PST Pusher utility
+
+$run_name = '[RUNNAME]' # designate a name for each individual processing run or case
+$working_path = '[CASEPATH]'  # designate Case location
+
+$worker_count = [WORKERCOUNT]
+$worker_mem = [WORKERMEMORY]
+$worker_temp = '[WORKERTEMP]'
+
+
+
+
+
+
+
+
+
+
+
+# ---------------------  do not alter or edit below this line ---------------------------- #
+
+$csv_path = "user"
+# csv_path = System.getProperty 'csv_path'
+
+$manifest_dir = System.getProperty 'nuix.crackAndDump.sourceDataMapping'
+$cnd_config = System.getProperty 'nuix.processing.enableCrackAndDump'
+$export_path = System.getProperty 'nuix.crackAndDump.exportDir'
+
+$email_types = ["application/pdf-mail","application/vnd.aftermail-email","application/vnd.hp-trim-email","application/vnd.lotus-domino-xml-appointment-document","application/vnd.lotus-domino-xml-mail-document","application/vnd.lotus-domino-xml-other-document","application/vnd.lotus-domino-xml-person-document","application/vnd.lotus-domino-xml-task-document","application/vnd.lotus-notes-document","application/vnd.ms-entourage-message","application/vnd.ms-outlook-activity","application/vnd.ms-outlook-appointment","application/vnd.ms-outlook-contact","application/vnd.ms-outlook-item","application/vnd.ms-outlook-journal","application/vnd.ms-outlook-mac-appointment","application/vnd.ms-outlook-mac-contact","application/vnd.ms-outlook-mac-email","application/vnd.ms-outlook-mac-note","application/vnd.ms-outlook-mac-task","application/vnd.ms-outlook-note","application/vnd.ms-outlook-property-block","application/vnd.ms-outlook-schedule","application/vnd.ms-outlook-stickynote","application/vnd.ms-outlook-task","application/vnd.rim-blackberry-email","application/vnd.rim-blackberry-sms","application/vnd.rimarts-becky-email","message/news","message/rfc822","message/rfc822-headers","message/x-scraped"]
+
+# currently not in use in this utility ---------------
+
+# $progress_percent = 2  
+# $evidence_size = 1000

@@ -1,0 +1,43 @@
+java_import javax.swing.SwingUtilities
+java_import javax.swing.JFileChooser
+java_import javax.swing.UIManager
+java_import javax.swing.JOptionPane
+
+#**************** METHODS ******************
+
+def thread_safe(&block)
+	SwingUtilities.invokeAndWait(block)
+end
+
+def choose_dir (title)
+	output_dir = nil
+	thread_safe {
+		UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName())
+		chooser = JFileChooser.new()
+		chooser.dialog_title = title
+		chooser.file_selection_mode = JFileChooser::DIRECTORIES_ONLY
+		if chooser.show_open_dialog(nil) == JFileChooser::APPROVE_OPTION
+			output_dir = chooser.selected_file.path.gsub('\\', '/')
+		end
+	}
+	return output_dir
+end 
+def alert(message)
+	thread_safe {
+		JOptionPane.showMessageDialog(nil, message)
+	}
+end
+def choose_file (title)
+	output_file = nil
+	thread_safe {
+		UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName())
+		chooser = JFileChooser.new()
+		filter = FileNameExtensionFilter.new("CSV file", "csv", "txt");
+		chooser.setFileFilter(filter)
+		chooser.dialog_title = title
+		if chooser.show_open_dialog(nil) == JFileChooser::APPROVE_OPTION
+			output_file = chooser.selected_file.path.gsub('\\', '/')
+		end
+	}
+	return output_file
+end

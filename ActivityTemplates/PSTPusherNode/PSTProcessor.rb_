@@ -1,0 +1,173 @@
+class PSTProcessor
+	#shorthand method to require various ruby libraries
+	%w{set csv pathname fileutils date thread}.each { |x| require x }
+
+	attr_accessor :psts
+	attr_accessor :archives
+	attr_reader :pst_path
+	attr_reader :mimetypes_exported
+	attr_reader :total_size_reported
+	attr_reader :callback_frequency
+	
+	def initialize(pst_path)
+		@total_size_reported = true
+		@callback_frequency = callback_frequency
+		@pst_path = pst_path
+		@psts = []
+		@archives = []
+	end
+	def setTotalSizeReported(value)
+		@total_size_reported = value
+	end
+	def handle_processor_shutdown(caze, processor, dialog)
+			dialog.logMessage("case closed.")
+			dialog.setMainStatus("Cancelling, stand by...")
+			dialog.logMessage("aborting processor...")
+			processor.abort unless processor == nil
+			dialog.logMessage("processor aborted.")
+			dialog.logMessage("closing case...")
+			caze.close unless caze == nil
+			caze = nil
+			
+			rescue StandardError => e
+				dialog.logMessage("ERROR - #{e.message}")
+	end
+	
+	def dateDiff(first_date, second_date)
+		total_seconds = ((second_date-first_date) * 86400).to_i
+		hours = total_seconds / 3600
+		minutes = (total_seconds - (hours * 3600)) / 60
+		seconds = (total_seconds - (hours * 3600)) - (minutes * 60)
+		return "#{hours.to_s.rjust(2, "0")}:#{minutes.to_s.rjust(2, "0")}:#{seconds.to_s.rjust(2, "0")}"
+	end
+	def getSourceKeyFromPSTName(pst_path)
+		pst_name = pst_path.gsub("\\", "/").rpartition("/")[2]
+		return pst_name.gsub(/(_\d+)?\.pst/.match(pst_name).to_s, "")
+	end
+	def processPSTs(dialog)
+		flag_itemprocessed = false
+		flag_progressupdated = false
+		sourceKeys = Set.new
+		@start_date = DateTime.now
+		dialog.logMessage("Script started: #{@start_date.strftime("%Y%m%d %H:%M:%S")}")
+		containers = Hash.new
+		
+		semaphore_item = Mutex.new
+		semaphore_progress = Mutex.new
+		
+		total_size = 0
+		
+		# get PSTs for processing based on config file specified via CrackAndDump switch - method in PSTSearch.rb_
+		@psts, total_size, @archives = find_all_pst_files(@pst_path)
+		
+		
+		#puts "@psts = #{@psts}"
+		#puts "@archives = #{@archives}"
+		#puts "total_size = #{total_size}"
+		
+		handle_processor_shutdown(nil, nil, dialog) if dialog.abortWasRequested
+		dialog.logMessage("Adding #{@psts.size} PST files to case...")
+		dialog.logMessage("Exporting for these users: #{@archives} ...")
+
+		#prepare case
+		case_name = "#{$run_name}.#{DateTime.now.strftime("%Y%m%d_%H%M%S.%L")}"
+		dialog.logMessage("Creating Nuix case: #{case_name}...")
+		case_factory = $utilities.getCaseFactory()
+		case_location = $working_path 
+		# case_location = getCaseLocation.gsub("\\", "/")
+		case_location += "/" unless case_location[-1] == "/"
+		caze = case_factory.create("#{case_location}#{case_name}")
+		#prepare processor
+		processor = caze.getProcessor()
+
+		item_count = 0
+		skipped_count = 0
+		
+		processor.whenProgressUpdated do |progress_info|
+			semaphore_progress.synchronize {
+				if dialog.abortWasRequested
+					handle_processor_shutdown(caze, processor, dialog)
+					return false
+				end
+				#@total_size_reported = true
+				if !flag_progressupdated && @total_size_reported
+					dialog.setMainProgress(0, (progress_info.getTotalSize() / (1024 * 1024.0)))
+					dialog.logMessage("Total size to read: #{(progress_info.getTotalSize() / (1024 * 1024.0)).round(2)} MB")
+					flag_progressupdated = true
+				end
+				dialog.setMainProgress(progress_info.getCurrentSize() / (1024 * 1024.0)) if @total_size_reported
+			}
+		end
+				
+		processor.when_item_processed do |item|
+			semaphore_item.synchronize {
+			mt = item.getMimeType()
+			if $email_types.include?(mt)
+				item_count += 1
+			else
+				#skipped_count += 1
+				#puts "skipped = #{mt} item"
+				#puts "this is: #{item.getName()}"
+			end
+			#dialog.setSubStatusSafe("Exporting Email: #{item_count} - Attached Items: #{skipped_count}")
+			dialog.setSubStatusSafe("Exported Email: #{item_count}")
+			}
+		end
+		
+		processor.when_cleaning_up do |clean|
+			dialog.logMessageSafe ("#{item_count} items processed. Completion = 100%")
+			#dialog.setMainProgressSafe(100)
+			dialog.setMainStatus("Processing Complete!")
+			dialog.setSubStatusSafe("Cleaning Up ...")
+			dialog.logMessageSafe ("----------------")
+			#dialog.logMessageSafe ("Processing complete.")
+		end
+		
+		#getProcessorSettings in a separate .rb_ file
+		processor.setProcessingSettings(getProcessorSettings())
+		processor.setParallelProcessingSettings(getParallelProcessingSettings())
+
+		dialog.logMessage("Adding pst files to engine for processing...")
+			
+		@psts.each do |pst|
+			sourceKey = getSourceKeyFromPSTName(pst)
+		
+			#puts "sourceKey = #{sourceKey}"
+			
+			# add a new evidence container if I don't have one with that sourceKey already
+			containers[sourceKey] = processor.newEvidenceContainer(sourceKey, getEvidenceContainerSettings()) unless containers.has_key?(sourceKey)
+			# add the pst file to that container
+			containers[sourceKey].addFile(pst)
+			
+			# total_size += pst[1]
+			sourceKeys << sourceKey.downcase
+			handle_processor_shutdown(nil, nil, dialog) if dialog.abortWasRequested
+		end
+		containers.each_key { |key| containers[key].save }
+		#and now, process the manifests
+		dialog.logMessage("Initializing processing...")
+		dialog.setMainStatus("Processing #{@psts.size} PST files for #{@archives.size} Users...")
+		processor.process()
+				
+		#all finished, shut down time
+		dialog.setSubStatus("Processing completed, shutting down Nuix engine...")
+		evidence_container = nil
+		processor = nil
+		caze.close unless caze == nil
+		caze = nil
+		dialog.setSubStatus("Nuix engine shutdown complete.")
+		@end_date = DateTime.now
+		dialog.logMessage("Script Started: #{@end_date.strftime("%Y%m%d %H:%M:%S")}")
+		dialog.logMessage("Total Processing Time: #{dateDiff(@start_date, @end_date)}")
+		dialog.setMainStatus("Total Processed = #{@psts.size} PST files (#{total_size/1024/1024} MB) for #{@archives.size} Users in #{dateDiff(@start_date, @end_date)}")
+		
+		nx_metrics = Array.new
+		nx_metrics = [total_size,case_name,$export_path].to_csv
+		writeReport("Nuix Metrics", "#{$export_path}" +"/nuix_metrics_#{case_name}.csv", nx_metrics)
+	
+		return true
+	end
+	
+	
+
+end

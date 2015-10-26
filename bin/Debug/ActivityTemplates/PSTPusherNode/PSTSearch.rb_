@@ -1,0 +1,60 @@
+	# this method will find all pst files, and get their size too (used to track progress).  Doesn't really need a separate .rb file, but kept like this so it
+	# matches the manifest automation script
+
+require 'csv'
+
+# pulls values from CnD config file column A, these should be the names of PSTs written to disk in original archive export stage
+def getSearchValues() 
+	archives = []
+	config_name = $cnd_config.split("configFile=>")[1].split(";")[0]
+	p "getting search values from file: #{config_name}"
+	CSV.foreach(config_name) do |line|
+		archives << line[0]
+	end
+	return archives
+end
+
+	
+def find_all_pst_files(path)
+	returnMe = []
+	final_targets = []
+	archive_names = []
+	total_volume = 0
+	files = []
+	archive_names = getSearchValues() #compare to column A from ews_mapping.csv
+	archive_names.each do |name|
+		files << Dir.glob("#{path}/**/#{name}*.pst")
+	end
+=begin	
+	files.each do |target|
+		p "Splitting file #{target}"
+		file_name = target.split('/')
+		pstname = file_name.last.split('.')
+		
+		# alter logic to scope for only archive name**
+		pstname = pstname[0].split('_')
+		name = pstname[0].to_s
+		p "pstname after split = #{name}"
+		if archive_names.include?(name)
+			p "Hit on #{name}"
+			final_targets << target
+		else
+			p "Miss on #{pstname[0]}"
+		end
+	end
+=end
+	final_targets = files.flatten
+	#p "final targets are: #{final_targets}"
+	#p "archives are: #{archive_names}"
+	#use final list for below
+	final_targets.each do |f| 
+		if !File.directory?(f)
+			returnMe << f
+			total_volume += File.size(f)
+		end
+	end
+	p "total volume = #{total_volume}"
+	return returnMe, total_volume, archive_names
+end
+
+

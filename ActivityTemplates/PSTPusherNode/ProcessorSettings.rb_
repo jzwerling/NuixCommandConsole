@@ -1,0 +1,53 @@
+def getProcessorSettings()
+	return {:processText=>false,
+	:processLooseFileContents=>false,  # set this to true if not using lightspeed
+	:processForensicImages=>false, # set this to true if not using lightspeed
+	:analysisLanguage=>"en",
+	:stopWords=>false,
+	:stemming=>false,
+	:enableExactQueries=>false,
+	:extractNamedEntities=>false,
+	:extractNamedEntitiesFromText=>false,
+	:extractNamedEntitiesFromProperties=>false,
+	:extractNamedEntitiesFromTextStripped=>false,
+	:extractShingles=>false,
+	:processTextSummaries=>false,
+	:extractFromSlackSpace=>false,
+	:carveUnidentifiedData=>false,
+	:recoverDeletedFiles=>false,
+	:extractEndOfFileSlackSpace=>false,
+	:identifyPhysicalFiles=>true,
+	:createThumbnails=>false,
+	:skinToneAnalysis=>false,
+	:calculateAuditedSize=>false,
+	:storeBinary=>false,
+	:maxStoredBinarySize=>250000000,
+	:maxDigestSize=>250000000,
+	:digests=>"MD5",
+	:addBccToEmailDigests=>false,
+	:addCommunicationDateToEmailDigests=>false,
+	:reuseEvidenceStores=>false,
+	:processFamilyFields=>false,
+	:hideEmbeddedImmaterialData=>false,
+	# take this one out, it screws up processing somehow when a call back is used... :enableCustomProcessing=>
+	:reportProcessingStatus=>"physical_files"
+	}
+end
+
+def getParallelProcessingSettings()
+	return {:workerCount=>$worker_count,
+			:workerMemory=>$worker_mem,
+			:workerTemp=>$worker_temp}
+end
+
+def getEvidenceContainerSettings()
+	return {:encoding=>"UTF-8", :timezone=>"America/New_York"}
+end
+
+def getEvidenceContainerSettingsAU()
+	return {:encoding=>"UTF-8", :timezone=>"Australia/Sydney"}
+end
+
+def getEvidenceContainerSettingsNY()
+	return {:encoding=>"UTF-8", :timezone=>"America/New_York"}
+end

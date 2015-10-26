@@ -1,0 +1,144 @@
+class PSTProcessor
+	#shorthand method to require various ruby libraries
+	%w{set csv pathname fileutils date thread}.each { |x| require x }
+
+	attr_accessor :psts
+	attr_reader :pst_path
+	attr_reader :mimetypes_exported
+	attr_reader :total_size_reported
+	def initialize(pst_path)
+		@total_size_reported = true
+		@pst_path = pst_path
+		@psts = []
+		@mimetypes_exported = ["application/pdf-mail","application/vnd.aftermail-email","application/vnd.hp-trim-email","application/vnd.lotus-domino-xml-appointment-document","application/vnd.lotus-domino-xml-mail-document","application/vnd.lotus-domino-xml-other-document","application/vnd.lotus-domino-xml-person-document","application/vnd.lotus-domino-xml-task-document","application/vnd.lotus-notes-document","application/vnd.ms-entourage-message","application/vnd.ms-outlook-activity","application/vnd.ms-outlook-appointment","application/vnd.ms-outlook-contact","application/vnd.ms-outlook-item","application/vnd.ms-outlook-journal","application/vnd.ms-outlook-mac-appointment","application/vnd.ms-outlook-mac-contact","application/vnd.ms-outlook-mac-email","application/vnd.ms-outlook-mac-note","application/vnd.ms-outlook-mac-task","application/vnd.ms-outlook-note","application/vnd.ms-outlook-property-block","application/vnd.ms-outlook-schedule","application/vnd.ms-outlook-stickynote","application/vnd.ms-outlook-task","application/vnd.rim-blackberry-email","application/vnd.rim-blackberry-sms","application/vnd.rimarts-becky-email","message/news","message/rfc822","message/rfc822-headers","message/x-scraped"]
+	end
+	def setTotalSizeReported(value)
+		@total_size_reported = value
+	end
+	def handle_processor_shutdown(caze, processor, dialog)
+			dialog.logMessage("case closed.")
+			dialog.setMainStatus("Cancelling, stand by...")
+			dialog.logMessage("aborting processor...")
+			processor.abort unless processor == nil
+			dialog.logMessage("processor aborted.")
+			dialog.logMessage("closing case...")
+			caze.close unless caze == nil
+			caze = nil
+			
+			rescue StandardError => e
+				dialog.logMessage("ERROR - #{e.message}")
+	end
+	
+	def dateDiff(first_date, second_date)
+		total_seconds = ((second_date-first_date) * 86400).to_i
+		hours = total_seconds / 3600
+		minutes = (total_seconds - (hours * 3600)) / 60
+		seconds = (total_seconds - (hours * 3600)) - (minutes * 60)
+		return "#{hours.to_s.rjust(2, "0")}:#{minutes.to_s.rjust(2, "0")}:#{seconds.to_s.rjust(2, "0")}"
+	end
+	def getSourceKeyFromPSTName(pst_path)
+		pst_name = pst_path.gsub("\\", "/").rpartition("/")[2]
+		return pst_name.gsub(/(_\d+)?\.pst/.match(pst_name).to_s, "")
+	end
+	def processPSTs(dialog)
+		flag_itemprocessed = false
+		flag_progressupdated = false
+		sourceKeys = Set.new
+		@start_date = DateTime.now
+		dialog.logMessage("Script started: #{@start_date.strftime("%Y%m%d %H:%M:%S")}")
+		containers = Hash.new
+		
+		semaphore_item = Mutex.new
+		semaphore_progress = Mutex.new
+
+		@psts = find_all_pst_files(@pst_path)
+		
+		handle_processor_shutdown(nil, nil, dialog) if dialog.abortWasRequested
+		dialog.logMessage("Adding #{@psts.size} PST files to case...")
+
+		#prepare case
+		case_name = "#{$run_name}.#{DateTime.now.strftime("%Y%m%d_%H%M%S.%L")}"
+		dialog.logMessage("Creating Nuix case: #{case_name}...")
+		case_factory = $utilities.getCaseFactory()
+		case_location = $working_path 
+		# case_location = getCaseLocation.gsub("\\", "/")
+		case_location += "/" unless case_location[-1] == "/"
+		caze = case_factory.create("#{case_location}#{case_name}")
+		#prepare processor
+		processor = caze.getProcessor()
+
+		counter = 0
+
+		
+		processor.whenProgressUpdated do |progress_info|
+			semaphore_progress.synchronize {
+				if dialog.abortWasRequested
+					handle_processor_shutdown(caze, processor, dialog)
+					return false
+				end
+				@total_size_reported = true
+				if !flag_progressupdated && @total_size_reported
+					dialog.setMainProgress(0, (progress_info.getTotalSize() / (1024 * 1024.0)))
+					dialog.logMessage("Total size to read: #{(progress_info.getTotalSize() / (1024 * 1024.0)).round(2)} MB")
+					flag_progressupdated = true
+				end
+				dialog.setMainProgress(progress_info.getCurrentSize() / (1024 * 1024.0)) if @total_size_reported
+			}
+		end
+		
+		#add callback
+		processor.whenItemProcessed do |processed_item| 
+			semaphore_item.synchronize {
+				if !flag_itemprocessed
+					dialog.logMessage("Processing...")
+					flag_itemprocessed = true
+				end
+				# only count this item if the first bit of the path matches a sourcekey, and the mimetype is email exportable
+				if sourceKeys.include?((processed_item.getPath()[0]).downcase) && @mimetypes_exported.include?(processed_item.getMimeType)
+					counter += 1
+					dialog.setSubStatus("Exporting Items: #{counter}")
+				end
+				#handle user abort
+				if dialog.abortWasRequested
+					handle_processor_shutdown(caze, processor, dialog) 
+					return false
+				end
+			}
+		end
+		
+		#getProcessorSettings in a separate .rb_ file
+		processor.setProcessingSettings(getProcessorSettings())
+		processor.setParallelProcessingSettings(getParallelProcessingSettings())
+
+		dialog.logMessage("Adding pst files to engine for processing...")
+		total_size = 0
+		@psts.each do |pst|
+			sourceKey = getSourceKeyFromPSTName(pst[0])
+			# add a new evidence container if I don't have one with that sourceKey already
+			containers[sourceKey] = processor.newEvidenceContainer(sourceKey, getEvidenceContainerSettings()) unless containers.has_key?(sourceKey)
+			# add the pst file to that container
+			containers[sourceKey].addFile(pst[0])
+			total_size += pst[1]
+			sourceKeys << sourceKey.downcase
+			handle_processor_shutdown(nil, nil, dialog) if dialog.abortWasRequested
+		end
+		containers.each_key { |key| containers[key].save }
+		#and now, process the manifests
+		dialog.logMessage("Initializing processing...")
+		dialog.setMainStatus("Reading PST files...")
+		processor.process()
+		
+		#all finished, shut down time
+		dialog.setMainStatus("Processing completed, shutting down Nuix engine...")
+		evidence_container = nil
+		processor = nil
+		caze.close unless caze == nil
+		caze = nil
+		dialog.setMainStatus("Nuix engine shutdown complete.")
+		@end_date = DateTime.now
+		dialog.logMessage("Script started: #{@end_date.strftime("%Y%m%d %H:%M:%S")}")
+		dialog.logMessage("Total processing time: #{dateDiff(@start_date, @end_date)}")
+		return true
+	end
+
+end

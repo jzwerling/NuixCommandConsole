@@ -1,0 +1,10 @@
+MappingFile=C:\Users\daniel.berry\Desktop\PST_Pusher_v1\ews_mapping.csv
+ExportDirectory=C:\Users\daniel.berry\Desktop\PST_Pusher_v1\export
+RunName=splork
+CasePath=C:\Users\daniel.berry\Desktop\PST_Pusher_v1\casedir-2
+NuixWorkers=2
+ApplicationMemory=2048
+WorkerMemory=1024
+MaintainSourceFolderStructure=True
+IsEnterpriseSourceData=False
+ServiceAccountConfiguredForImpersonation=False
