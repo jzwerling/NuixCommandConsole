@@ -216,18 +216,6 @@
     <None Include="ActivityTemplates\PSTPusherNode\PSTSearch.rb_">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="ActivityTemplates\PSTPusherNode\source data\output_5.pst">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="ActivityTemplates\PSTPusherNode\source data\PSTs\Michael Lappin.pst">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="ActivityTemplates\PSTPusherNode\source data\PSTs\Michael Lappin_1.pst">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="ActivityTemplates\PSTPusherNode\source data\recipient.pst">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="ActivityTemplates\PSTPusherNode\SwingDialogs.rb_">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
